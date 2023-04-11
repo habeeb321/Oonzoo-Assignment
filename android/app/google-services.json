@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "359495417480",
+    "project_id": "oonzo-assignment",
+    "storage_bucket": "oonzo-assignment.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:359495417480:android:a146ad6126628af76a293d",
+        "android_client_info": {
+          "package_name": "com.example.oonzoo_assignment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "359495417480-atgpolhn9se9pmd72ot0ansh0qqdklp6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPNsk74Nt8rkO6I2dIHeFt-SEfH7m29Hc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "359495417480-atgpolhn9se9pmd72ot0ansh0qqdklp6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
