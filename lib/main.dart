@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:oonzoo_assignment/view/home_screen/view/home_screen.dart';
+import 'package:oonzoo_assignment/view/login_screen/view/login_screen.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      home: const LoginScreen(),
     );
   }
 }
