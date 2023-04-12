@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:oonzoo_assignment/view/forgot_password/controller/forgot_pass_controller.dart';
 import 'package:oonzoo_assignment/view/login_screen/controller/login_controller.dart';
 import 'package:oonzoo_assignment/view/main_screen/main_screen.dart';
 import 'package:oonzoo_assignment/view/signup_screen/controller/signup_controller.dart';
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<SignupController>(
           create: (context) => SignupController(),
+        ),
+        ChangeNotifierProvider<ForgotPassController>(
+          create: (context) => ForgotPassController(),
         ),
       ],
       child: MaterialApp(

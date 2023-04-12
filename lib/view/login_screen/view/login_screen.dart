@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:oonzoo_assignment/core/constants.dart';
+import 'package:oonzoo_assignment/view/forgot_password/view/forgot_password.dart';
 import 'package:oonzoo_assignment/view/login_screen/controller/login_controller.dart';
 import 'package:oonzoo_assignment/view/signup_screen/view/signup_screen.dart';
 import 'package:provider/provider.dart';
@@ -134,7 +135,9 @@ class LoginScreen extends StatelessWidget {
                           Column(
                             children: [
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  nextScreen(context, const ForgotPassword());
+                                },
                                 child: const Text(
                                   'Forgot Password?',
                                   style: TextStyle(
