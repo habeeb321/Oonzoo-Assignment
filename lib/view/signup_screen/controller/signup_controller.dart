@@ -1,15 +1,17 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:oonzoo_assignment/core/constants.dart';
 import 'package:oonzoo_assignment/main.dart';
 
-class LoginController extends ChangeNotifier {
+class SignupController extends ChangeNotifier {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
 
-  void loginEmailPassword(context) async {
+  void signupEmailPassword(context) async {
     showDialog(
       context: context,
       builder: (context) => const Center(
@@ -17,17 +19,19 @@ class LoginController extends ChangeNotifier {
       ),
     );
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim());
       emailController.clear();
       passwordController.clear();
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        showSnackbar(context, 'No user found for the email');
-      } else if (e.code == 'wrong-password') {
-        showSnackbar(context, 'Wrong password provided for the user');
+      if (e.code == 'weak-password') {
+        showSnackbar(context, 'The password provided is too weak');
+      } else if (e.code == 'email-already-in-use') {
+        showSnackbar(context, 'The account already exists for the email');
       }
+    } catch (e) {
+      log(e.toString());
     }
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
