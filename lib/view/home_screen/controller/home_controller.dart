@@ -1,7 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:oonzoo_assignment/view/home_screen/model/home_model.dart';
 
 class HomeController extends ChangeNotifier {
+  List<HomeModel> itemList = [];
+
+  void getApi() async {}
   void signingOut(context) {
     showDialog(
       context: context,

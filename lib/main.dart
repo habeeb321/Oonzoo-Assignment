@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:oonzoo_assignment/injection/locator.dart';
 import 'package:oonzoo_assignment/view/forgot_password/controller/forgot_pass_controller.dart';
 import 'package:oonzoo_assignment/view/home_screen/controller/home_controller.dart';
 import 'package:oonzoo_assignment/view/login_screen/controller/login_controller.dart';
@@ -13,6 +14,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  setup();
   runApp(const MyApp());
 }
 

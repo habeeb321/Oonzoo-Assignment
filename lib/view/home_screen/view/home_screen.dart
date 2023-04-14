@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Logged in: ${FirebaseAuth.instance.currentUser!.email!}",
+              "Logged In: ${FirebaseAuth.instance.currentUser!.email!}",
               style: const TextStyle(fontSize: 18),
             ),
           ],
