@@ -1,89 +1,113 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:oonzoo_assignment/view/home_screen/controller/home_controller.dart';
-import 'package:oonzoo_assignment/view/home_screen/view/widgets/custom_listile.dart';
-import 'package:provider/provider.dart';
+import 'package:oonzoo_assignment/core/constants.dart';
 
 class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({super.key});
+  const CustomDrawer({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<HomeController>(context, listen: false);
-    return Drawer(
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Colors.blue.shade300,
-              Colors.blue.shade800,
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            tileMode: TileMode.clamp,
-          ),
-        ),
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            SizedBox(
-              height: 200,
-              child: DrawerHeader(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.end,
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.7,
+      child: Drawer(
+        child: Column(
+          children: [
+            Container(
+              height: 50,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/drawer_background.jpg"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      'Welcome Back',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                      ),
+                    const CircleAvatar(
+                      radius: 20,
+                      backgroundImage: AssetImage("assets/profile.jpeg"),
                     ),
-                    const SizedBox(height: 10),
-                    Text(
-                      FirebaseAuth.instance.currentUser!.email!,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+                    const Spacer(),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Text(
+                          'Login',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17,
+                            color: kWhitecolor,
+                          ),
+                        ),
+                        SizedBox(height: 2),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 15,
+                          color: kWhitecolor,
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
             ),
-            CustomListTile(
-              icon: Icons.home,
-              text: 'Home',
-              onTap: () {
-                // Navigate to home screen
-              },
-            ),
-            CustomListTile(
-              icon: Icons.settings,
-              text: 'settings',
-              onTap: () {
-                // Navigate to profile screen
-              },
-            ),
-            Divider(
-              height: 1,
-              thickness: 1,
-              color: Colors.white.withOpacity(0.3),
-              indent: 16,
-              endIndent: 16,
-            ),
-            CustomListTile(
-              icon: Icons.logout,
-              text: 'Log out',
-              onTap: () {
-                provider.signingOut(context);
-              },
+            const SizedBox(height: 20),
+            Expanded(
+              child: ListView(
+                children: [
+                  _buildDrawerButton(
+                    context,
+                    text: 'Account',
+                    icon: Icons.account_circle_outlined,
+                    onPressed: () {
+                      // Handle account button press
+                    },
+                  ),
+                  _buildDrawerButton(
+                    context,
+                    text: 'Order History',
+                    icon: Icons.history,
+                    onPressed: () {
+                      // Handle order history button press
+                    },
+                  ),
+                  _buildDrawerButton(
+                    context,
+                    text: 'Track Order',
+                    icon: Icons.local_shipping_outlined,
+                    onPressed: () {
+                      // Handle track order button press
+                    },
+                  ),
+                  _buildDrawerButton(
+                    context,
+                    text: 'Cash Refund',
+                    icon: Icons.money,
+                    onPressed: () {
+                      // Handle cash refund button press
+                    },
+                  ),
+                ],
+              ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildDrawerButton(BuildContext context,
+      {required String text,
+      required IconData icon,
+      required VoidCallback onPressed}) {
+    return ListTile(
+      leading: Icon(icon),
+      title: Text(text),
+      onTap: onPressed,
     );
   }
 }

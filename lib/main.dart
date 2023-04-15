@@ -10,11 +10,11 @@ import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
+  setup();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  setup();
   runApp(const MyApp());
 }
 
