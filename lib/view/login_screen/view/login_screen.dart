@@ -122,7 +122,9 @@ class LoginScreen extends StatelessWidget {
                     height: 50,
                     width: double.infinity,
                     child: OutlinedButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        value.signInWithGoogle();
+                      },
                       icon: const Image(
                         image: AssetImage('assets/google.png'),
                         height: 30.0,
