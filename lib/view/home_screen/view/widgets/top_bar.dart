@@ -13,12 +13,12 @@ class TopBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        IconButton(
-          icon: const Icon(Icons.menu),
-          onPressed: () => scaffoldKey.currentState?.openDrawer(),
-        ),
         Row(
           children: [
+            IconButton(
+              icon: const Icon(Icons.menu),
+              onPressed: () => scaffoldKey.currentState?.openDrawer(),
+            ),
             const CircleAvatar(
               radius: 20,
               backgroundImage: AssetImage("assets/profile.jpeg"),
@@ -37,13 +37,11 @@ class TopBar extends StatelessWidget {
             IconButton(
               onPressed: () {
                 // Handle dropdown button press
-                Scaffold.of(context).openDrawer();
               },
               icon: const Icon(Icons.keyboard_arrow_down),
             ),
           ],
         ),
-        const Spacer(),
         Row(
           children: [
             IconButton(
@@ -90,39 +88,6 @@ class TopBar extends StatelessWidget {
               onPressed: () {
                 // Handle notifications button press
               },
-            ),
-            Stack(
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.shopping_cart_outlined),
-                  onPressed: () {
-                    // Handle cart button press
-                  },
-                ),
-                Positioned(
-                  top: 0,
-                  right: 0,
-                  child: Container(
-                    padding: const EdgeInsets.all(1),
-                    decoration: BoxDecoration(
-                      color: Colors.yellow.shade700,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    constraints: const BoxConstraints(
-                      minWidth: 16,
-                      minHeight: 16,
-                    ),
-                    child: const Text(
-                      '0',
-                      style: TextStyle(
-                        color: kBlackcolor,
-                        fontSize: 10,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
-              ],
             ),
           ],
         ),
