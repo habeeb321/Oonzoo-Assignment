@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:oonzoo_assignment/core/constants.dart';
+import 'package:oonzoo_assignment/view/login_screen/view/login_screen.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
@@ -9,105 +12,155 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.7,
       child: Drawer(
-        child: Column(
-          children: [
-            Container(
-              height: 50,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/drawer_background.jpg"),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const CircleAvatar(
-                      radius: 20,
-                      backgroundImage: AssetImage("assets/profile.jpeg"),
+        child: SafeArea(
+          child: Column(
+            children: [
+              InkWell(
+                onTap: () => nextScreen(context, const LoginScreen()),
+                child: Container(
+                  height: 80,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/background.jpeg"),
+                      fit: BoxFit.cover,
                     ),
-                    const Spacer(),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text(
-                          'Login',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17,
-                            color: kWhitecolor,
+                  ),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 25,
+                            backgroundColor: Colors.orange.shade800,
+                            child: const Icon(
+                              Icons.person_outline,
+                              color: Colors.white,
+                              size: 40,
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 2),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 15,
-                          color: kWhitecolor,
-                        ),
-                      ],
+                          const SizedBox(width: 10),
+                          Row(
+                            children: const [
+                              Text(
+                                'Login / Register',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              kWidth20,
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                size: 20,
+                                color: Colors.white,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            Expanded(
-              child: ListView(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  _buildDrawerButton(
-                    context,
-                    text: 'Account',
-                    icon: Icons.account_circle_outlined,
-                    onPressed: () {
-                      // Handle account button press
+                  Column(
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.person_outline),
+                        onPressed: () {
+                          // Navigate to account page
+                        },
+                      ),
+                      const Text('Account'),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.work_history_outlined),
+                        onPressed: () {
+                          // Navigate to order history page
+                        },
+                      ),
+                      const Text('Orders'),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.local_shipping_outlined),
+                        onPressed: () {
+                          // Navigate to track order page
+                        },
+                      ),
+                      const Text('Track'),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.monetization_on_outlined),
+                        onPressed: () {
+                          // Navigate to cash refund page
+                        },
+                      ),
+                      const Text('Refund'),
+                    ],
+                  ),
+                ],
+              ),
+              kHeight10,
+              divider,
+              kHeight10,
+              Column(
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.home_outlined),
+                    title: const Text('Home'),
+                    onTap: () {
+                      // Handle Home Tap
                     },
                   ),
-                  _buildDrawerButton(
-                    context,
-                    text: 'Order History',
-                    icon: Icons.history,
-                    onPressed: () {
-                      // Handle order history button press
+                  ListTile(
+                    leading: const Icon(Icons.notifications_outlined),
+                    title: const Text('Notifications'),
+                    onTap: () {
+                      // Handle Home Tap
                     },
                   ),
-                  _buildDrawerButton(
-                    context,
-                    text: 'Track Order',
-                    icon: Icons.local_shipping_outlined,
-                    onPressed: () {
-                      // Handle track order button press
+                  ListTile(
+                    leading: const Icon(Icons.local_offer_outlined),
+                    title: const Text('Offer Zone'),
+                    onTap: () {
+                      // Handle Home Tap
                     },
                   ),
-                  _buildDrawerButton(
-                    context,
-                    text: 'Cash Refund',
-                    icon: Icons.money,
-                    onPressed: () {
-                      // Handle cash refund button press
+                  ListTile(
+                    leading: const Icon(Icons.favorite_outline),
+                    title: const Text('Parenting'),
+                    onTap: () {
+                      // Handle Home Tap
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.explore_outlined),
+                    title: const Text('Explore'),
+                    onTap: () {
+                      // Handle Home Tap
                     },
                   ),
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
-    );
-  }
-
-  Widget _buildDrawerButton(BuildContext context,
-      {required String text,
-      required IconData icon,
-      required VoidCallback onPressed}) {
-    return ListTile(
-      leading: Icon(icon),
-      title: Text(text),
-      onTap: onPressed,
     );
   }
 }
