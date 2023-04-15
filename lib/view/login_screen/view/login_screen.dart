@@ -37,6 +37,7 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(height: 10.0),
                   TextFormField(
                     controller: value.emailController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: InputDecoration(
                       hintText: 'Enter your Email ID',
                       border: const UnderlineInputBorder(),
@@ -47,9 +48,16 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter your email';
+                      }
+                      return null;
+                    },
                   ),
                   TextFormField(
                     controller: value.passwordController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: InputDecoration(
                       hintText: 'Enter your Password',
                       border: const UnderlineInputBorder(),
@@ -60,13 +68,23 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                    obscureText: true,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter your password';
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(height: 30.0),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        value.loginEmailPassword(context);
+                        if (value.formKey.currentState!.validate()) {
+                          value.formKey.currentState!.save();
+                          value.loginEmailPassword(context);
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.orange.shade900,

@@ -2,7 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:oonzoo_assignment/core/constants.dart';
+import 'package:oonzoo_assignment/view/home_screen/controller/home_controller.dart';
 import 'package:oonzoo_assignment/view/login_screen/view/login_screen.dart';
+import 'package:provider/provider.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
@@ -11,6 +13,7 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<HomeController>(context, listen: false);
     return SizedBox(
       child: Drawer(
         child: SafeArea(
@@ -149,10 +152,10 @@ class CustomDrawer extends StatelessWidget {
                     },
                   ),
                   ListTile(
-                    leading: const Icon(Icons.explore_outlined),
-                    title: const Text('Explore'),
+                    leading: const Icon(Icons.logout_outlined),
+                    title: const Text('Logout'),
                     onTap: () {
-                      // Handle Home Tap
+                      provider.signingOut(context);
                     },
                   ),
                 ],
